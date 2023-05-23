@@ -11,7 +11,13 @@ func CreateList(c *gin.Context) {
 		Title string
 		Order int
 	}
-	c.Bind(&body)
+	err := c.Bind(&body)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"message": err.Error(),
+		})
+		return
+	}
 	list := models.List{Title: body.Title, Order: body.Order}
 	database.DB.Create(&list)
 

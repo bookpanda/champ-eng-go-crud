@@ -9,7 +9,12 @@ import (
 func DeleteList(c *gin.Context) {
 	id := c.Param("id")
 	var list models.List
-	database.DB.First(&list, id)
+	if res := CheckListExists(list, id); res != "" {
+		c.JSON(400, gin.H{
+			"message": res,
+		})
+		return
+	}
 	database.DB.Delete(&models.List{}, id)
 
 	c.JSON(200, gin.H{

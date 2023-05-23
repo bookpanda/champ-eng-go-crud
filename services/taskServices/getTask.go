@@ -1,7 +1,6 @@
 package services
 
 import (
-	"github.com/bookpanda/champ-eng-go-crud/database"
 	"github.com/bookpanda/champ-eng-go-crud/models"
 	"github.com/gin-gonic/gin"
 )
@@ -9,7 +8,12 @@ import (
 func GetTask(c *gin.Context) {
 	id := c.Param("id")
 	var task models.Task
-	database.DB.First(&task, id)
+	if res := CheckTaskExists(task, id); res != "" {
+		c.JSON(400, gin.H{
+			"message": res,
+		})
+		return
+	}
 
 	c.JSON(200, gin.H{
 		"task": task,

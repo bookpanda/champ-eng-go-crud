@@ -21,14 +21,6 @@ func UpdateTask(c *gin.Context) {
 	services.UpdateTask(c)
 }
 
-func ReorderTask(c *gin.Context) {
-	services.ReorderTask(c)
-}
-
-func MoveTaskToAnotherList(c *gin.Context) {
-	services.MoveTaskToAnotherList(c)
-}
-
 func DeleteTask(c *gin.Context) {
 	services.DeleteTask(c)
 }

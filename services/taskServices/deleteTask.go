@@ -9,7 +9,12 @@ import (
 func DeleteTask(c *gin.Context) {
 	id := c.Param("id")
 	var task models.Task
-	database.DB.First(&task, id)
+	if res := CheckTaskExists(task, id); res != "" {
+		c.JSON(400, gin.H{
+			"message": res,
+		})
+		return
+	}
 	database.DB.Delete(&models.Task{}, id)
 
 	c.JSON(200, gin.H{

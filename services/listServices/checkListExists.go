@@ -1,4 +1,4 @@
-package utils
+package services
 
 import (
 	"errors"
@@ -8,13 +8,12 @@ import (
 	"gorm.io/gorm"
 )
 
-func CheckListExists(id int) string {
-	var list models.List
+func CheckListExists(list models.List, id string) string {
 	if err := database.DB.Where("id = ?", id).First(&list).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return "list with this id not found"
 		}
-		return "error creating a new task"
+		return "error finding list"
 	}
 	return ""
 }

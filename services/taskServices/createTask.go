@@ -1,9 +1,11 @@
 package services
 
 import (
+	"strconv"
+
 	"github.com/bookpanda/champ-eng-go-crud/database"
 	"github.com/bookpanda/champ-eng-go-crud/models"
-	"github.com/bookpanda/champ-eng-go-crud/utils"
+	services "github.com/bookpanda/champ-eng-go-crud/services/listServices"
 	"github.com/gin-gonic/gin"
 )
 
@@ -14,8 +16,15 @@ func CreateTask(c *gin.Context) {
 		Order       int
 		ListID      int
 	}
-	c.Bind(&body)
-	if res := utils.CheckListExists(body.ListID); res != "" {
+	err := c.Bind(&body)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"message": err.Error(),
+		})
+		return
+	}
+	var list models.List
+	if res := services.CheckListExists(list, strconv.Itoa(body.ListID)); res != "" {
 		c.JSON(400, gin.H{
 			"message": res,
 		})
