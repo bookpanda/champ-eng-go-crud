@@ -18,6 +18,13 @@ func CreateList(c *gin.Context) {
 		})
 		return
 	}
+
+	if body.Title == "" {
+		c.JSON(400, gin.H{
+			"message": "fields title is empty",
+		})
+		return
+	}
 	list := models.List{Title: body.Title, Order: body.Order}
 	database.DB.Create(&list)
 

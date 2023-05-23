@@ -23,6 +23,13 @@ func CreateTask(c *gin.Context) {
 		})
 		return
 	}
+
+	if body.Description == "" || body.DueDate == "" {
+		c.JSON(400, gin.H{
+			"message": "fields description or duedate is empty",
+		})
+		return
+	}
 	var list models.List
 	if res := services.CheckListExists(list, strconv.Itoa(body.ListID)); res != "" {
 		c.JSON(400, gin.H{
