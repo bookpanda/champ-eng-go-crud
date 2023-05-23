@@ -34,7 +34,7 @@ func UpdateTask(c *gin.Context) {
 		return
 	}
 	var task models.Task
-	if res := CheckTaskExists(task, id); res != "" {
+	if res := CheckTaskExists(&task, id); res != "" {
 		c.JSON(400, gin.H{
 			"message": res,
 		})
@@ -48,7 +48,7 @@ func UpdateTask(c *gin.Context) {
 	if body.ListID != -1 {
 
 		var list models.List
-		if res := services.CheckListExists(list, strconv.Itoa(body.ListID)); res != "" {
+		if res := services.CheckListExists(&list, strconv.Itoa(body.ListID)); res != "" {
 			c.JSON(400, gin.H{
 				"message": res,
 			})

@@ -31,7 +31,7 @@ func CreateTask(c *gin.Context) {
 		return
 	}
 	var list models.List
-	if res := services.CheckListExists(list, strconv.Itoa(body.ListID)); res != "" {
+	if res := services.CheckListExists(&list, strconv.Itoa(body.ListID)); res != "" {
 		c.JSON(400, gin.H{
 			"message": res,
 		})

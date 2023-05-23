@@ -8,7 +8,7 @@ import (
 func GetList(c *gin.Context) {
 	id := c.Param("id")
 	var list models.List
-	if res := CheckListExists(list, id); res != "" {
+	if res := CheckListExists(&list, id); res != "" {
 		c.JSON(400, gin.H{
 			"message": res,
 		})

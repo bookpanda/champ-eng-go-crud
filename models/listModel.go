@@ -6,5 +6,5 @@ type List struct {
 	gorm.Model
 	Title string
 	Order int
-	Tasks []Task `gorm:"constraint:OnDelete:CASCADE;"`
+	Tasks []Task `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 }

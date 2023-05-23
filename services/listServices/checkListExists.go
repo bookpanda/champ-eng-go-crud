@@ -8,8 +8,8 @@ import (
 	"gorm.io/gorm"
 )
 
-func CheckListExists(list models.List, id string) string {
-	if err := database.DB.Where("id = ?", id).First(&list).Error; err != nil {
+func CheckListExists(list *models.List, id string) string {
+	if err := database.DB.Where("id = ?", id).First(list).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return "list with this id not found"
 		}

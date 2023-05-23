@@ -9,7 +9,7 @@ import (
 func DeleteTask(c *gin.Context) {
 	id := c.Param("id")
 	var task models.Task
-	if res := CheckTaskExists(task, id); res != "" {
+	if res := CheckTaskExists(&task, id); res != "" {
 		c.JSON(400, gin.H{
 			"message": res,
 		})

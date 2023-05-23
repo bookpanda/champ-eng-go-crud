@@ -8,8 +8,8 @@ import (
 	"gorm.io/gorm"
 )
 
-func CheckTaskExists(task models.Task, id string) string {
-	if err := database.DB.Where("id = ?", id).First(&task).Error; err != nil {
+func CheckTaskExists(task *models.Task, id string) string {
+	if err := database.DB.Where("id = ?", id).First(task).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return "task with this id not found"
 		}
