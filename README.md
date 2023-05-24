@@ -1,4 +1,4 @@
-# ChAMP SWE Track Backend assignment
+# ChAMP SWE Track Backend Assignment
 
 ## Installation
 - git clone https://github.com/bookpanda/champ-eng-go-crud.git
