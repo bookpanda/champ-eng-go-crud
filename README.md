@@ -13,7 +13,7 @@
     - User: test
     - Password: 1234
     - Database: db
-- air main.go
+- air main.go (please run this command in Linux/WSL)
 
 ## API Documentation
 You can view the API Docs at localhost:3000/swagger/index.html
