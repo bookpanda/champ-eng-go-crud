@@ -5,6 +5,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// GetList godoc
+// @Summary      Get a List
+// @Description  Get a List with ID
+// @Tags         lists
+// @Produce      json
+// @Param id path string true "List ID"
+// @Router       /lists/{id} [get]
 func GetList(c *gin.Context) {
 	id := c.Param("id")
 	var list models.List

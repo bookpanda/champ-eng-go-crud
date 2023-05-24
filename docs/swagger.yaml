@@ -1,0 +1,98 @@
+definitions:
+  services.CreateListDto:
+    properties:
+      order:
+        type: integer
+      title:
+        type: string
+    type: object
+  services.UpdateListDto:
+    properties:
+      order:
+        type: integer
+      title:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /lists:
+    get:
+      description: Get all Lists
+      produces:
+      - application/json
+      responses: {}
+      summary: Get all Lists
+      tags:
+      - lists
+    post:
+      consumes:
+      - application/json
+      description: Create a new List from JSON
+      parameters:
+      - description: CreateListDto
+        in: body
+        name: ListDto
+        required: true
+        schema:
+          $ref: '#/definitions/services.CreateListDto'
+      produces:
+      - application/json
+      responses: {}
+      summary: Create a new List
+      tags:
+      - lists
+  /lists/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a List with ID, and its Tasks
+      parameters:
+      - description: List ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Delete a List
+      tags:
+      - lists
+    get:
+      description: Get a List with ID
+      parameters:
+      - description: List ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Get a List
+      tags:
+      - lists
+    put:
+      consumes:
+      - application/json
+      description: Update a List of ID with JSON
+      parameters:
+      - description: List ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: UpdateListDto
+        in: body
+        name: ListDto
+        required: true
+        schema:
+          $ref: '#/definitions/services.UpdateListDto'
+      produces:
+      - application/json
+      responses: {}
+      summary: Update a List
+      tags:
+      - lists
+swagger: "2.0"

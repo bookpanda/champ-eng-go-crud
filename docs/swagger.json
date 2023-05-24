@@ -1,0 +1,147 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/lists": {
+            "get": {
+                "description": "Get all Lists",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "lists"
+                ],
+                "summary": "Get all Lists",
+                "responses": {}
+            },
+            "post": {
+                "description": "Create a new List from JSON",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "lists"
+                ],
+                "summary": "Create a new List",
+                "parameters": [
+                    {
+                        "description": "CreateListDto",
+                        "name": "ListDto",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/services.CreateListDto"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/lists/{id}": {
+            "get": {
+                "description": "Get a List with ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "lists"
+                ],
+                "summary": "Get a List",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "List ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            },
+            "put": {
+                "description": "Update a List of ID with JSON",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "lists"
+                ],
+                "summary": "Update a List",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "List ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "UpdateListDto",
+                        "name": "ListDto",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/services.UpdateListDto"
+                        }
+                    }
+                ],
+                "responses": {}
+            },
+            "delete": {
+                "description": "Delete a List with ID, and its Tasks",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "lists"
+                ],
+                "summary": "Delete a List",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "List ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        }
+    },
+    "definitions": {
+        "services.CreateListDto": {
+            "type": "object",
+            "properties": {
+                "order": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "services.UpdateListDto": {
+            "type": "object",
+            "properties": {
+                "order": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

@@ -6,6 +6,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// DeleteList godoc
+// @Summary      Delete a List
+// @Description  Delete a List with ID, and its Tasks
+// @Tags         lists
+// @Accept json
+// @Param id path string true "List ID"
+// @Produce      json
+// @Router       /lists/{id} [delete]
 func DeleteList(c *gin.Context) {
 	id := c.Param("id")
 	var list models.List

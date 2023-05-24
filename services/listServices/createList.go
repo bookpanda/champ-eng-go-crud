@@ -6,11 +6,21 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type CreateListDto struct {
+	Title string
+	Order int
+}
+
+// CreateList godoc
+// @Summary      Create a new List
+// @Description  Create a new List from JSON
+// @Tags         lists
+// @Accept json
+// @Param ListDto body CreateListDto true "CreateListDto"
+// @Produce      json
+// @Router       /lists [post]
 func CreateList(c *gin.Context) {
-	var body struct {
-		Title string
-		Order int
-	}
+	body := CreateListDto{}
 	err := c.Bind(&body)
 	if err != nil {
 		c.JSON(400, gin.H{

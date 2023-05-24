@@ -6,12 +6,23 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type UpdateListDto struct {
+	Title string
+	Order int
+}
+
+// UpdateList godoc
+// @Summary      Update a List
+// @Description  Update a List of ID with JSON
+// @Tags         lists
+// @Accept json
+// @Param id path string true "List ID"
+// @Param ListDto body UpdateListDto true "UpdateListDto"
+// @Produce      json
+// @Router       /lists/{id} [put]
 func UpdateList(c *gin.Context) {
 	id := c.Param("id")
-	var body struct {
-		Title string
-		Order int
-	}
+	body := UpdateListDto{}
 	body.Order = -1
 	err := c.Bind(&body)
 	if err != nil {

@@ -6,6 +6,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// GetLists godoc
+// @Summary      Get all Lists
+// @Description  Get all Lists
+// @Tags         lists
+// @Produce      json
+// @Router       /lists [get]
 func GetLists(c *gin.Context) {
 	var lists []models.List
 	database.DB.Find(&lists)
