@@ -15,7 +15,27 @@ func DeleteList(c *gin.Context) {
 		})
 		return
 	}
-	database.DB.Select("Task").Delete(&models.List{}, id)
+
+	// uintID, err := strconv.ParseUint(id, 10, 64)
+	// if err != nil {
+	// 	fmt.Printf("Parse Error: %s", err)
+	// }
+
+	// err = database.DB.Model(&models.List{
+	// 	Model: gorm.Model{
+	// 		ID: uint(uintID),
+	// 	},
+	// }).Association("Tasks").Delete()
+	// if err != nil {
+	// 	fmt.Printf("Error Log: %s", err)
+	// }
+	// database.DB.Unscoped().Select(clause.Associations).Unscoped().Delete(&models.List{}, id)
+
+	database.DB.Delete(&models.List{}, id)
+	database.DB.Where("list_id", id).Delete(&models.Task{})
+	// database.DB.Session(&gorm.Session{FullSaveAssociations: true}).Updates(&list)
+	// database.DB.Session(&gorm.Session{FullSaveAssociations: true}).Delete(&models.List{}, id)
+	// database.DB.Session(&gorm.Session{FullSaveAssociations: true}).Delete(&models.Task{}, id)
 
 	c.JSON(200, gin.H{
 		"list": list,
