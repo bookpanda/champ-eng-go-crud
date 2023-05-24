@@ -7,6 +7,11 @@
 - docker compose up
 - go run .\migrate\migrate.go
 - Connect database management tool to database docker
+    - Host: localhost
+    - Port: 5432
+    - User: test
+    - Password: 1234
+    - Database: db
 - air main.go
 
 ## API Documentation
