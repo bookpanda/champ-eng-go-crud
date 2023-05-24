@@ -13,7 +13,7 @@ type UpdateTaskDto struct {
 	Description string
 	DueDate     string
 	Order       int
-	ListID      int
+	ListID      uint
 }
 
 // UpdateTask godoc
@@ -29,7 +29,7 @@ func UpdateTask(c *gin.Context) {
 	id := c.Param("id")
 	body := UpdateTaskDto{}
 	body.Order = -1
-	body.ListID = -1
+	body.ListID = 0
 	err := c.Bind(&body)
 	if err != nil {
 		c.JSON(400, gin.H{
@@ -55,9 +55,9 @@ func UpdateTask(c *gin.Context) {
 	if body.Order != -1 {
 		database.DB.Model(&task).Update("order", body.Order)
 	}
-	if body.ListID != -1 {
+	if body.ListID != 0 {
 		var list models.List
-		if res := services.CheckListExists(&list, strconv.Itoa(body.ListID)); res != "" {
+		if res := services.CheckListExists(&list, strconv.Itoa(int(body.ListID))); res != "" {
 			c.JSON(400, gin.H{
 				"message": res,
 			})

@@ -9,5 +9,5 @@ type Task struct {
 	Description string
 	DueDate     string
 	Order       int
-	ListID      int
+	ListID      uint
 }
