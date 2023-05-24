@@ -39,8 +39,8 @@ func DeleteList(c *gin.Context) {
 	// }
 	// database.DB.Unscoped().Select(clause.Associations).Unscoped().Delete(&models.List{}, id)
 
-	database.DB.Delete(&models.List{}, id)
-	database.DB.Where("list_id", id).Delete(&models.Task{})
+	database.DB.Unscoped().Delete(&models.List{}, id)
+	database.DB.Where("list_id", id).Unscoped().Delete(&models.Task{})
 	// database.DB.Session(&gorm.Session{FullSaveAssociations: true}).Updates(&list)
 	// database.DB.Session(&gorm.Session{FullSaveAssociations: true}).Delete(&models.List{}, id)
 	// database.DB.Session(&gorm.Session{FullSaveAssociations: true}).Delete(&models.Task{}, id)

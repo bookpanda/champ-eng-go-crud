@@ -23,7 +23,7 @@ func DeleteTask(c *gin.Context) {
 		})
 		return
 	}
-	database.DB.Delete(&models.Task{}, id)
+	database.DB.Unscoped().Delete(&models.Task{}, id)
 
 	c.JSON(200, gin.H{
 		"task": task,
