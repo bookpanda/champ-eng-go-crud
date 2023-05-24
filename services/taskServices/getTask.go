@@ -5,6 +5,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// GetTask godoc
+// @Summary      Get a Task
+// @Description  Get a Task with ID
+// @Tags         Task
+// @Produce      json
+// @Param id path string true "Task ID"
+// @Router       /tasks/{id} [get]
 func GetTask(c *gin.Context) {
 	id := c.Param("id")
 	var task models.Task

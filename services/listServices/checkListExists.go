@@ -2,6 +2,7 @@ package services
 
 import (
 	"errors"
+	"fmt"
 
 	"github.com/bookpanda/champ-eng-go-crud/database"
 	"github.com/bookpanda/champ-eng-go-crud/models"
@@ -11,9 +12,9 @@ import (
 func CheckListExists(list *models.List, id string) string {
 	if err := database.DB.Where("id = ?", id).First(list).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
-			return "list with this id not found"
+			return fmt.Sprintf("List with id of %s not found", id)
 		}
-		return "error finding list"
+		return fmt.Sprintf("Error finding List with id of %s", id)
 	}
 	return ""
 }

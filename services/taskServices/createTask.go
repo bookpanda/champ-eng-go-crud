@@ -9,13 +9,23 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type CreateTaskDto struct {
+	Description string
+	DueDate     string
+	Order       int
+	ListID      int
+}
+
+// CreateTask godoc
+// @Summary      Create a new Task
+// @Description  Create a new Task from JSON. "order" field will be 0 if omitted.
+// @Tags         Task
+// @Accept json
+// @Param TaskDto body CreateTaskDto true "CreateTaskDto"
+// @Produce      json
+// @Router       /tasks [post]
 func CreateTask(c *gin.Context) {
-	var body struct {
-		Description string
-		DueDate     string
-		Order       int
-		ListID      int
-	}
+	body := CreateTaskDto{}
 	err := c.Bind(&body)
 	if err != nil {
 		c.JSON(400, gin.H{
@@ -26,7 +36,7 @@ func CreateTask(c *gin.Context) {
 
 	if body.Description == "" || body.DueDate == "" {
 		c.JSON(400, gin.H{
-			"message": "fields description or duedate is empty",
+			"message": "Fields 'description' or 'dueDate' is empty",
 		})
 		return
 	}

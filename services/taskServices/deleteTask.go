@@ -6,6 +6,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// DeleteTask godoc
+// @Summary      Delete a Task
+// @Description  Delete a Task with ID
+// @Tags         Task
+// @Accept json
+// @Param id path string true "Task ID"
+// @Produce      json
+// @Router       /tasks/{id} [delete]
 func DeleteTask(c *gin.Context) {
 	id := c.Param("id")
 	var task models.Task

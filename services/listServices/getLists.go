@@ -9,7 +9,7 @@ import (
 // GetLists godoc
 // @Summary      Get all Lists
 // @Description  Get all Lists
-// @Tags         lists
+// @Tags         List
 // @Produce      json
 // @Router       /lists [get]
 func GetLists(c *gin.Context) {

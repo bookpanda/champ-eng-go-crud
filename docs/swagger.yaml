@@ -6,12 +6,34 @@ definitions:
       title:
         type: string
     type: object
+  services.CreateTaskDto:
+    properties:
+      description:
+        type: string
+      dueDate:
+        type: string
+      listID:
+        type: integer
+      order:
+        type: integer
+    type: object
   services.UpdateListDto:
     properties:
       order:
         type: integer
       title:
         type: string
+    type: object
+  services.UpdateTaskDto:
+    properties:
+      description:
+        type: string
+      dueDate:
+        type: string
+      listID:
+        type: integer
+      order:
+        type: integer
     type: object
 info:
   contact: {}
@@ -24,11 +46,11 @@ paths:
       responses: {}
       summary: Get all Lists
       tags:
-      - lists
+      - List
     post:
       consumes:
       - application/json
-      description: Create a new List from JSON
+      description: Create a new List from JSON. "Order" field will be 0 if omitted.
       parameters:
       - description: CreateListDto
         in: body
@@ -41,7 +63,7 @@ paths:
       responses: {}
       summary: Create a new List
       tags:
-      - lists
+      - List
   /lists/{id}:
     delete:
       consumes:
@@ -58,7 +80,7 @@ paths:
       responses: {}
       summary: Delete a List
       tags:
-      - lists
+      - List
     get:
       description: Get a List with ID
       parameters:
@@ -72,11 +94,12 @@ paths:
       responses: {}
       summary: Get a List
       tags:
-      - lists
+      - List
     put:
       consumes:
       - application/json
-      description: Update a List of ID with JSON
+      description: Update a List of ID with JSON. Only changes the fields that are
+        in the JSON.
       parameters:
       - description: List ID
         in: path
@@ -94,5 +117,85 @@ paths:
       responses: {}
       summary: Update a List
       tags:
-      - lists
+      - List
+  /tasks:
+    get:
+      description: Get all Tasks
+      produces:
+      - application/json
+      responses: {}
+      summary: Get all Tasks
+      tags:
+      - Task
+    post:
+      consumes:
+      - application/json
+      description: Create a new Task from JSON. "Order" field will be 0 if omitted.
+      parameters:
+      - description: CreateTaskDto
+        in: body
+        name: TaskDto
+        required: true
+        schema:
+          $ref: '#/definitions/services.CreateTaskDto'
+      produces:
+      - application/json
+      responses: {}
+      summary: Create a new Task
+      tags:
+      - Task
+  /tasks/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a Task with ID
+      parameters:
+      - description: Task ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Delete a Task
+      tags:
+      - Task
+    get:
+      description: Get a Task with ID
+      parameters:
+      - description: Task ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Get a Task
+      tags:
+      - Task
+    put:
+      consumes:
+      - application/json
+      description: Update a Task of ID with JSON. Only changes the fields that are
+        in the JSON.
+      parameters:
+      - description: Task ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: UpdateTaskDto
+        in: body
+        name: TaskDto
+        required: true
+        schema:
+          $ref: '#/definitions/services.UpdateTaskDto'
+      produces:
+      - application/json
+      responses: {}
+      summary: Update a Task
+      tags:
+      - Task
 swagger: "2.0"

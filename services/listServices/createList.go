@@ -13,8 +13,8 @@ type CreateListDto struct {
 
 // CreateList godoc
 // @Summary      Create a new List
-// @Description  Create a new List from JSON
-// @Tags         lists
+// @Description  Create a new List from JSON. "order" field will be 0 if omitted.
+// @Tags         List
 // @Accept json
 // @Param ListDto body CreateListDto true "CreateListDto"
 // @Produce      json
@@ -31,7 +31,7 @@ func CreateList(c *gin.Context) {
 
 	if body.Title == "" {
 		c.JSON(400, gin.H{
-			"message": "fields title is empty",
+			"message": "Field 'title' is empty",
 		})
 		return
 	}

@@ -9,7 +9,7 @@ import (
 // DeleteList godoc
 // @Summary      Delete a List
 // @Description  Delete a List with ID, and its Tasks
-// @Tags         lists
+// @Tags         List
 // @Accept json
 // @Param id path string true "List ID"
 // @Produce      json

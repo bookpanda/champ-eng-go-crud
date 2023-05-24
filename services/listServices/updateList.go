@@ -13,8 +13,8 @@ type UpdateListDto struct {
 
 // UpdateList godoc
 // @Summary      Update a List
-// @Description  Update a List of ID with JSON
-// @Tags         lists
+// @Description  Update a List of ID with JSON. Only changes the fields that are in the JSON.
+// @Tags         List
 // @Accept json
 // @Param id path string true "List ID"
 // @Param ListDto body UpdateListDto true "UpdateListDto"
@@ -32,12 +32,6 @@ func UpdateList(c *gin.Context) {
 		return
 	}
 
-	if body.Title == "" {
-		c.JSON(400, gin.H{
-			"message": "fields title is empty",
-		})
-		return
-	}
 	var list models.List
 	if res := CheckListExists(&list, id); res != "" {
 		c.JSON(400, gin.H{
@@ -45,10 +39,12 @@ func UpdateList(c *gin.Context) {
 		})
 		return
 	}
-	database.DB.Model(&list).Updates(models.List{Title: body.Title})
+	if body.Title != "" {
+		database.DB.Model(&list).Updates(models.List{Title: body.Title})
+	}
 
 	if body.Order != -1 {
-		database.DB.Model(&list).Updates(models.List{Order: body.Order})
+		database.DB.Model(&list).Update("order", body.Order)
 	}
 
 	c.JSON(200, gin.H{

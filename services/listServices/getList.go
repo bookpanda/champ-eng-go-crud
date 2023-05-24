@@ -8,7 +8,7 @@ import (
 // GetList godoc
 // @Summary      Get a List
 // @Description  Get a List with ID
-// @Tags         lists
+// @Tags         List
 // @Produce      json
 // @Param id path string true "List ID"
 // @Router       /lists/{id} [get]
